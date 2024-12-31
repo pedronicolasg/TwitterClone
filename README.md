@@ -3,8 +3,8 @@ A simple Twitter clone created for learning and demonstration purposes.
 
 ## 📸 Preview
 <p align="center">
-<img src="assets/images/preview.png" alt="Preview Light Theme" width="700"/>
-<img src="assets/images/previewdark.png" alt="Preview Dark Theme" width="700"/>
+<img src="assets/images/preview.png" alt="Preview Light Theme" width="500"/>
+<img src="assets/images/previewdark.png" alt="Preview Dark Theme" width="500"/>
 </p>
 
 ## 🚀 Features
