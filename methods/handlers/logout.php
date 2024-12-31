@@ -1,4 +1,4 @@
 <?php
 require_once '../usermanager.php';
 
-UserManager::logout();
+UserManager::logout('../../signin.php');

@@ -15,6 +15,22 @@ class UserManager
     if (!$_SESSION['id']) return Utils::redirect('', $path);
   }
 
+  public function getTheme($userId)
+  {
+    $stmt = $this->conn->prepare("SELECT theme FROM users WHERE id = ?");
+    $stmt->execute([$userId]);
+    return $stmt->fetchColumn();
+  }
+
+  public function toggleTheme($userId)
+  {
+    $currentTheme = $this->getTheme($userId);
+    $newTheme = ($currentTheme === 'light') ? 'dark' : 'light';
+
+    $stmt = $this->conn->prepare("UPDATE users SET theme = ? WHERE id = ?");
+    $stmt->execute([$newTheme, $userId]);
+  }
+
   public function register($name, $email, $password)
   {
     $password = md5($password);
@@ -74,14 +90,15 @@ class UserManager
       $_SESSION['username'] = $user['username'];
       $_SESSION['email'] = $user['email'];
 
-      Utils::warnAndRedirect('Usuário logado com sucesso!', '../../index.php');
+      Utils::redirect('../../index.php');
     } else {
       echo "Usuário não cadastrado.";
     }
   }
 
-  public static function logout()
+  public static function logout($path)
   {
     @session_destroy();
+    Utils::redirect($path);
   }
 }
